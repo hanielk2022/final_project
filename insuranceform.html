@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+  <h1><u>Health Insurance Eligibility Survey:</u></h1>
+    <form>
+        <div class="mb-3">
+          <label for="username" class="form-label">Enter name here:</label>
+          <input type="text" class="form-control" id="username">
+          
+        </div><br>
+        <div class="mb-3">
+          <label for="userage" class="form-label">Enter your age:</label>
+          <input type="number" class="form-control" id="userage">
+        </div>
+
+        <div class="mb-3">
+            <p>Enter your yearly income:</p>
+            <input type="radio" class="form-control" id="option1" name="userincome">
+            <label for="option1">$0-$29,999</label>
+
+            <input type="radio" class="form-control" id="option2" name="userincome">
+            <label for="option2">$50,000-$99,000</label>
+
+            <input type="radio" class="form-control" id="option3" name="userincome">
+            <label for="option3">$100,000-$149,000</label>
+
+            <input type="radio" class="form-control" id="option4" name="userincome">
+            <label for="option4">$150,000+</label>
+          </div><br>
+
+        <div class="mb-3">
+            <label for="citizenship status" class="form-label">Select your citizenship status here:</label>
+            
+            <select name="citizenship" name="citizenship">
+              <option value="bybirth">U.S citizen by birth</option>
+              <option value="naturalization">U.S citizen by naturalization</option>
+              <option value="notcitizen">Not U.S citizen</option>
+            </select>
+        </div><br>
+
+        <div class="mb-3 form-check">
+          <label class="form-check-label" for="familysize">Enter family size here:</label>
+          <input type="number" class="form-check-input" id="familysize">
+        </div><br>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <form action="index.html">
+      <input type="submit" value="Go back to homepage">
+    </form>
+      
+</body>
+</html>
