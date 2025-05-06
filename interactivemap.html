@@ -4,13 +4,356 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
+     <style>
+        #map{ height: 500px; width: 715px;}
+
+</style>
 </head>
 <body>
-    <h1>CLICK REGION WHERE YOU RESIDE ON THE MAP BELOW</h1>
-    <img style="width: 900px; height: 900px;" src="https://cao-94612.s3.us-west-2.amazonaws.com/news/IMG_9506.jpg">
+
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">HealthBridge</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="aboutus.html">About us</a>
+                </li>
+                
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    See more
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="careers.html">Careers</a></li>
+                    <li><a class="dropdown-item" href="mission.html">Mission</a></li>
+                    <li><a class="dropdown-item" href="donations.html">Donations</a></li>
+                    <li><a class="dropdown-item" href="insuranceinfo.html">Insurance Information Page</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+    </nav><br><br>
+
+    <h3 style="text-indent: 20px;">Click on each marker to get info on nearby clinics:</h3><br>
+ 
+    <div class="container-mt-4">
+        <div class="row g-4">
+
+            <div class="col-md-6 ms-pd-4">
+                <div id="map"></div>
+            </div>
+
+            <div class="col-md-6">
+                <div id="container" class="clinic" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 id="title" class="card-title"></h5>
+                        <p id="text" class="card-text"></p><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <form action="index.html">
         <input type="submit" value="Go back to homepage">
     </form>
+
+    <button id="clearpage">Clear Page</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script>
+        const map = L.map('map').setView([37.8044, -122.2711], 13);
+        const attribution = '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors';
+        const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        const tiles = L.tileLayer(tileUrl, {attribution});
+        tiles.addTo(map);
+
+        const locations = [
+            {latlng: [37.808705, -122.253530]},
+            {latlng: [37.819352, -122.263924]},
+            {latlng: [37.791908, -122.248993]},
+            {latlng: [37.8279879, -122.2101992]},
+            {latlng: [37.758915, -122.1856911]},
+            {latlng: [37.8248841, -122.2541779]},
+            {latlng: [37.803882, -122.2694332]},
+            {latlng: [37.8181494, -122.2446212]},
+            {latlng: [37.7755064, -122.2235493]},
+            {latlng: [37.734968, -122.136270]}
+        ]
+
+        const marker1 = L.marker(locations[0].latlng).bindPopup("Carbon Health Urgent Care").addTo(map);
+        const marker2 = L.marker(locations[1].latlng).bindPopup("Lg Mini Clinic").addTo(map);
+        const marker3 = L.marker(locations[2].latlng).bindPopup("Oakland Care Center").addTo(map);
+        const marker4 = L.marker(locations[3].latlng).bindPopup("San Antonio Neighborhood Health Center").addTo(map);
+        const marker5 = L.marker(locations[4].latlng).bindPopup("CityHealth").addTo(map);
+        const marker6 = L.marker(locations[5].latlng).bindPopup("East Oakland Health Center").addTo(map);
+        const marker7 = L.marker(locations[6].latlng).bindPopup("UCSF Health-GoHealth Urgent Care").addTo(map);
+        const marker8 = L.marker(locations[7].latlng).bindPopup("LifeLong Trust Health Center").addTo(map);
+        const marker9 = L.marker(locations[8].latlng).bindPopup("One Medical").addTo(map);
+        const marker10 = L.marker(locations[9].latlng).bindPopup("La Clinica Fruitvale Village").addTo(map);
+
+        document.getElementById('clearpage').addEventListener('click', function(){
+            document.getElementById('container').innerHTML = '';
+        });
+
+        marker1.on('mouseover', function () {
+            this.openPopup();
+        });
+        marker1.on('mouseout', function () {
+            this.closePopup();
+        });
+
+        marker1.on('click', () => {
+            //const cap1 = document.createElement('div1');
+            const heading = document.getElementById('title');
+            heading.innerHTML = "Carbon Health";
+            const description = document.getElementById('text');
+            description.innerHTML = "411 Grand Ave, Oakland, CA 94610"
+            const link = document.createElement('a');
+            link.textContent = 'Visit Site';
+            link.href = 'https://carbonhealth.com/en/locations/cities/california/oakland?srsltid=AfmBOooN_XJEMts-lYweFhuUvgK-XnWoJWhlrkoHTKdbnPfOMSXl4D8O';
+            box = document.getElementById('container');
+            box.innerHTML = '';
+            box.appendChild(heading);
+            box.appendChild(description);
+            box.appendChild(link);
+        });
+
+        marker2.on('mouseover', function () {
+            this.openPopup();
+        });
+        marker2.on('mouseout', function () {
+            this.closePopup();
+        });
+
+        marker2.on('click', () => {
+            //const cap1 = document.createElement('div1');
+            const heading = document.getElementById('title');
+            heading.innerHTML = "Lg Mini Clinic";
+            const description = document.getElementById('text');
+            description.innerHTML = "1416 35th Ave, Oakland, CA 94601"
+            const link = document.createElement('a');
+            
+            link.textContent = 'Visit Site';
+            link.href = 'https://lgminiclinic01.wixsite.com/lgminiclinic';
+            link.style.display = 'inline-block';
+
+            box = document.getElementById('container');
+            box.innerHTML = '';
+            box.appendChild(heading);
+            box.appendChild(description);
+            box.appendChild(link);
+        });
+
+        marker3.on('mouseover', function () {
+            this.openPopup();
+        });
+        marker3.on('mouseout', function () {
+            this.closePopup();
+        });
+
+        marker3.on('click', () => {
+            //const cap1 = document.createElement('div1');
+            const heading = document.getElementById('title');
+            heading.innerHTML = "Oakland Care Center";
+            const description = document.getElementById('text');
+            description.innerHTML = "3300 Webster Street Oakland, CA 94609";
+            const link = document.createElement('a');
+            link.textContent = 'Visit Site';
+            link.href = 'https://www.sutterhealth.org/find-location/facility/oakland-care-center-1043246877';
+            box = document.getElementById('container');
+            box.innerHTML = '';
+            box.appendChild(heading);
+            box.appendChild(description);
+            box.appendChild(link);
+        });
+
+        marker4.on('mouseover', function () {
+            this.openPopup();
+        });
+        marker4.on('mouseout', function () {
+            this.closePopup();
+        });
+
+        marker4.on('click', () => {
+            //const cap1 = document.createElement('div1');
+            const heading = document.getElementById('title');
+            heading.innerHTML = "San Antonio Neigbhorhood Health Center";
+            const description = document.getElementById('text');
+            description.innerHTML = "1030 International Blvd, Oakland, CA 94606";
+            const link = document.createElement('a');
+            link.textContent = 'Visit Site';
+            link.href = 'https://laclinica.org/location/san-antonio-neighborhood-health-center/';
+            box = document.getElementById('container');
+            box.innerHTML = '';
+            box.appendChild(heading);
+            box.appendChild(description);
+            box.appendChild(link);
+        });
+
+        marker5.on('mouseover', function () {
+            this.openPopup();
+        });
+        marker5.on('mouseout', function () {
+            this.closePopup();
+        });
+
+        marker5.on('click', () => {
+            //const cap1 = document.createElement('div1');
+            const heading = document.getElementById('title');
+            heading.innerHTML = "CityHealth - Oakland Montclair";
+            const description = document.getElementById('text');
+            description.innerHTML = "1970 Mountain Blvd, Oakland, CA 94611";
+            const link = document.createElement('a');
+            link.textContent = 'Visit Site';
+            link.href = 'https://cityhealth.com/';
+            box = document.getElementById('container');
+            box.innerHTML = '';
+            box.appendChild(heading);
+            box.appendChild(description);
+            box.appendChild(link);
+        });
+
+        marker6.on('mouseover', function () {
+            this.openPopup();
+        });
+        marker6.on('mouseout', function () {
+            this.closePopup();
+        });
+
+        marker6.on('click', () => {
+            //const cap1 = document.createElement('div1');
+            const heading = document.getElementById('title');
+            heading.innerHTML = "East Oakland Health Center";
+            const description = document.getElementById('text');
+            description.innerHTML = "10700 MacArthur Boulevard, Suite 14 Oakland CA 94605-5298";
+            const link = document.createElement('a');
+            link.textContent = 'Visit Site';
+            link.href = 'https://lifelongmedical.org/locations/east-oakland-health-center/';
+            box = document.getElementById('container');
+            box.innerHTML = '';
+            box.appendChild(heading);
+            box.appendChild(description);
+            box.appendChild(link);
+        });
+
+        marker7.on('mouseover', function () {
+            this.openPopup();
+        });
+        marker7.on('mouseout', function () {
+            this.closePopup();
+        });
+
+        marker7.on('click', () => {
+            //const cap1 = document.createElement('div1');
+            const heading = document.getElementById('title');
+            heading.innerHTML = "UCSF Health-GoHealth Urgent Care";
+            const description = document.getElementById('text');
+            description.innerHTML = "3900 Piedmont Ave, Oakland, CA 94611";
+            const link = document.createElement('a');
+            link.textContent = 'Visit Site';
+            link.href = 'https://www.ucsfhealth.org/about/our-affiliates/gohealth-urgent-care';
+            box = document.getElementById('container');
+            box.innerHTML = '';
+            box.appendChild(heading);
+            box.appendChild(description);
+            box.appendChild(link);
+        });
+
+        marker8.on('mouseover', function () {
+            this.openPopup();
+        });
+        marker8.on('mouseout', function () {
+            this.closePopup();
+        });
+
+        marker8.on('click', () => {
+            //const cap1 = document.createElement('div1');
+            const heading = document.getElementById('title');
+            heading.innerHTML = "Lifelong Trust Health Center";
+            const description = document.getElementById('text');
+            description.innerHTML = "386 14th St, Oakland, CA 94612";
+            const link = document.createElement('a');
+            link.textContent = 'Visit Site';
+            link.href = 'https://hcai.ca.gov/facility/lifelong-trust-health-center/';
+            box = document.getElementById('container');
+            box.innerHTML = '';
+            box.appendChild(heading);
+            box.appendChild(description);
+            box.appendChild(link);
+        });
+
+        marker9.on('mouseover', function () {
+            this.openPopup();
+        });
+        marker9.on('mouseout', function () {
+            this.closePopup();
+        });
+
+        marker9.on('click', () => {
+            //const cap1 = document.createElement('div1');
+            const heading = document.getElementById('title');
+            heading.innerHTML = "OneMedical";
+            const description = document.getElementById('text');
+            description.innerHTML = "3850 Grand Ave, Oakland, CA 94610";
+            const link = document.createElement('a');
+            link.textContent = 'Visit Site';
+            link.href = 'https://www.onemedical.com/locations/sf/oakland-grandlake/';
+            box = document.getElementById('container');
+            box.innerHTML = '';
+            box.appendChild(heading);
+            box.appendChild(description);
+            box.appendChild(link);
+        });
+
+        marker10.on('mouseover', function () {
+            this.openPopup();
+        });
+        marker10.on('mouseout', function () {
+            this.closePopup();
+        });
+
+        marker10.on('click', () => {
+            //const cap1 = document.createElement('div1');
+            const heading = document.getElementById('title');
+            heading.innerHTML = "La Clinica Fruitvale Village";
+            const description = document.getElementById('text');
+            description.innerHTML = "3451 E 12th St, Oakland, CA 94601";
+            const link = document.createElement('a');
+            link.textContent = 'Visit Site';
+            link.href = 'https://laclinica.org/location/la-clinica-fruitvale-village/';
+            box = document.getElementById('container');
+            box.innerHTML = '';
+            box.appendChild(heading);
+            box.appendChild(description);
+            box.appendChild(link);
+        });
+
+        
+        // fetch('https://api.example.com/locations')
+        //     .then(res => res.json())
+        //     .then(locations => {
+        // locations.forEach(loc => {
+        //L.marker([37.808705, -122.253530]).addTo(map).bindPopup(`<b>${loc.name}</b><br>${loc.details}`);
+    //   });
+    // });
+        //const api_url = 'https://api.wheretheiss.at/v1/satellites/25544';
+    </script>
 </body>
 </html>
